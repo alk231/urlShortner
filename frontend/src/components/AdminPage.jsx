@@ -3,18 +3,21 @@ import { useEffect, useState } from "react";
 export default function AdminPage() {
   const [urls, setUrls] = useState([]);
 
-  const fetchUrls = async () => {
-    try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin`);
-      const data = await res.json();
-      setUrls(data);
-    } catch (error) {
-      console.error("Failed to fetch URLs:", error);
-    }
-  };
-
   useEffect(() => {
-    fetchUrls();
+    
+    fetch("http://localhost:5000/api/admin")
+      .then((res) => res.json())
+      .then((data) => setUrls(data));
+
+   
+    const handleFocus = () => {
+      fetch("http://localhost:5000/api/admin")
+        .then((res) => res.json())
+        .then((data) => setUrls(data));
+    };
+
+    window.addEventListener("focus", handleFocus);
+    return () => window.removeEventListener("focus", handleFocus);
   }, []);
 
   return (
