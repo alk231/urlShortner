@@ -7,7 +7,7 @@ export default function App() {
   const [urls, setUrls] = useState([]);
 
   const fetchUrls = async () => {
-    const res = await fetch("http://localhost:5000/api/admin");
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin`);
     const data = await res.json();
     setUrls(data);
   };

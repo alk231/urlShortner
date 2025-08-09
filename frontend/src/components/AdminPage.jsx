@@ -5,7 +5,7 @@ export default function AdminPage() {
 
   const fetchUrls = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/admin");
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin`);
       const data = await res.json();
       setUrls(data);
     } catch (error) {
