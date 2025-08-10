@@ -4,14 +4,14 @@ export default function AdminPage() {
   const [urls, setUrls] = useState([]);
 
   useEffect(() => {
-    
-    fetch("http://localhost:5000/api/admin")
+
+    fetch(`${import.meta.env.VITE_API_URL}/api/admin`)
       .then((res) => res.json())
       .then((data) => setUrls(data));
 
    
     const handleFocus = () => {
-      fetch("http://localhost:5000/api/admin")
+      fetch(`${import.meta.env.VITE_API_URL}/api/admin`)
         .then((res) => res.json())
         .then((data) => setUrls(data));
     };
@@ -46,7 +46,7 @@ export default function AdminPage() {
               <tr key={url._id} className="hover:bg-gray-50">
                 <td className="border border-gray-200 px-4 py-2 text-blue-600">
                   <a
-                    href={`http://localhost:5000/${url.shortCode}`}
+                    href={`${import.meta.env.VITE_API_URL}/${url.shortCode}`}
                     target="_blank"
                     rel="noreferrer"
                     className="hover:underline"
